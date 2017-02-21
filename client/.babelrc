@@ -1,0 +1,3 @@
+{
+	"presets": ["react", "Es2015", "stage-1"]
+}
