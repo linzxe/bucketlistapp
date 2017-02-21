@@ -6,16 +6,13 @@ function createUserToken(user){
 	var timestamp = new Date().getTime();
 	return jwt.encode({ sub: user.id, iat: timestamp }, config.secret)
 }
-
 exports.signup = function(req, res, next){
 	//1
 	var email = req.body.email;
 	var password = req.body.password;
-
-if( !email || !password){
-	return res.status(418).send({error: "You must provide email and pw."});
+	if( !email || !password){
+		return res.status(418).send({error: 'You must provide email and pw.'});
 }
-
 	//2
 	User.findOne({ email: email }, function(err, existingUser){
 		if(err) {
@@ -39,4 +36,14 @@ if( !email || !password){
 		res.json({token: createUserToken(user)});
 	});
   });
+}
+
+exports.signin = function(req, res, next) {
+	//user has already had their email and pw authorized
+	//we just need to give them a token
+	res.send({ token: createUserToken(req.user) });
 };
+
+
+
+
