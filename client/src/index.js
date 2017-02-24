@@ -6,6 +6,7 @@ import App from './components/app';
 import reducers from './reducers';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import Signin from './components/auth/signin';
+//import ListItem from './components/list/new-list-item';
 
 var createStoreWithMiddleware = applyMiddleware()(createStore);
 
