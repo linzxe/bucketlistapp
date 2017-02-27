@@ -30,6 +30,12 @@ export function signinUser({ email, password }) {
 			.catch(response => dispatch(authError("Incorrect login info")));
 	}
 }
+export function signoutUser(){
+	localStorage.removeItem('token');
+
+	return {type: UNAUTH_USER};
+}
+
 export function createPost(props) {
 	const request = axios.post(`${ROOT_URL}/posts`, props);
 	return {
@@ -43,3 +49,7 @@ export function authError(error) {
 		payload: error
 	};
 }
+
+
+
+
