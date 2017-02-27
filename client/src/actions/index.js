@@ -1,6 +1,10 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import { AUTH_USER, UNAUTH_USER } from './types';
+import { 
+	AUTH_USER,
+	UNAUTH_USER,
+	AUTH_ERROR
+	 } from './types';
 import authReducer from '../reducers/auth_reducer';
 
 export const CREATE_POSTS = 'CREATE_POSTS';
@@ -23,9 +27,7 @@ export function signinUser({ email, password }) {
 			//this sends us off to the /newitem view
 			browserHistory.push('/newitem');
 		})
-			.catch(() => {
-
-		});
+			.catch(response => dispatch(authError("Incorrect login info")));
 	}
 }
 export function createPost(props) {
@@ -33,5 +35,11 @@ export function createPost(props) {
 	return {
 		type: CREATE_POSTS,
 		payload: request
+	};
+}
+export function authError(error) {
+	return {
+		type: AUTH_ERROR,
+		payload: error
 	};
 }
