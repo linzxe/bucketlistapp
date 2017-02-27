@@ -29,7 +29,7 @@ render() {
 
 	return (
 		<div>
-			<searchBar onSearchTermChange={videoSearch} />
+			<SearchBar onSearchTermChange={videoSearch} />
 			<VideoDetail video={this.state.selectedVideo} />
 		</div>
 		);
